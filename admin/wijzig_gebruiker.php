@@ -2,6 +2,10 @@
 
 require_once "../database.php";
 
+if (!isset($_SESSION['admin'])){
+    header('location: ../');
+}
+
 $stmt = $con->prepare("SELECT * FROM gebruiker WHERE id_gebruiker = ?");
 $stmt->bindValue(1, $_GET["id"]);
 $stmt->execute();
