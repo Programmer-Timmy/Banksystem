@@ -1,6 +1,10 @@
 <?php
 require_once "../database.php";
 
+if (!isset($_SESSION['admin'])) {
+    header('location: ../');
+}
+
 if ($_POST) {
 
     if (isset($_POST["isadmin"])) {
