@@ -1,32 +1,26 @@
 <?php
 require_once "database.php";
-//var_dump(hash("SHA256", "Murcs"));
-//var_dump(password_hash("Murcs", PASSWORD_DEFAULT));
-
-//als er op submit is gedrukt
 if ($_POST) {
 	$stmt = $con->prepare("SELECT * FROM gebruiker WHERE gebruikersnaam=?");
 	$stmt->bindValue(1, $_POST["gebruikersnaam"]);
 	$stmt->execute();
 
 	$user = $stmt->fetchObject();
-	//als we iemand hebben gevonden met dit e-mailadres
-	// kijken of username in de tabel staat
+
 	if ($user !== false) {
-		//checken of hij uberhaupt nog wel mag inloggen met deze email
 		if (password_verify($_POST["wachtwoord"], $user->wachtwoord)) {
 			session_start();
 			$_SESSION["id"] = $user->id;
-
+			if ($user->isadmin == 1) {
+				$_SESSION["admin"] = 'true';
+				header("location:/admin");
+				return;
+			}
 			header("location: portal.php");
 			return;
 		}
 	}
-
-	echo "<h1 style='color:red';>Kan niet inloggen</h1>";
-
-	// met php checken of hash overeen komt met wachtwoord
-	// zo ja dan gaan we session starten
+	echo "<script>alert('Verkeerd wachtwoord of gebruikersnaam');</script>";
 }
 ?>
 
@@ -40,15 +34,10 @@ if ($_POST) {
 
 <body>
 	<form method="post">
-		<form method="post">
-			<container class="container">
-				<input type="text" class="gebruikersnaam" name="gebruikersnaam" placeholder="Gebruikersnaam"><br>
-				<input type="text" class="wachtwoord" name="wachtwoord" placeholder="Wachtwoord"><br>
-				<!--href locatie toevoegen naar homepagina-->
-				<a href="" class="btn btn-primary" role="button">Inloggen</a>
-				<a href="registreren.php" class="btn btn-primary" role="button">Registreren</a><br>
-			</container>
-		</form>
+		<input type="text" class="gebruikersnaam" name="gebruikersnaam" placeholder="Gebruikersnaam"><br>
+		<input type="password" class="wachtwoord" name="wachtwoord" placeholder="Wachtwoord"><br>
+		<input type="submit" value="Inloggen" class="btn btn-primary">
+		<a href="registreren.php" class="btn btn-primary" role="button">Registreren</a>
 	</form>
 </body>
 
