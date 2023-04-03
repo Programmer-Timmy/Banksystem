@@ -58,26 +58,26 @@ if ($_POST) {
                         </div>
 
                         <input type="checkbox" id="materieel" name="materieel" value="1">
-                        <label for="waarborg">Er is materieel:</label><br>
+                        <label for="waarborg">Het is materieel:</label><br>
 
 
                         <strong>Soort Activa</strong>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="soort" id="exampleRadios1" value="1" checked>
                             <label class="form-check-label" for="exampleRadios1">
-                            Vlottende activa
+                            Auto
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="soort" id="exampleRadios1" value="2" checked>
                             <label class="form-check-label" for="exampleRadios1">
-                            Vaste activa
+                            Huis
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="soort" id="exampleRadios1" value="3" checked>
                             <label class="form-check-label" for="exampleRadios1">
-                             Eigen vermogen
+                            Aandelen
                             </label>
                         </div>
                         <div class="form-check mb-4">
