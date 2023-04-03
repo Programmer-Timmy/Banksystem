@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../database.php";
 
 if (!isset($_SESSION['admin'])) {
@@ -33,22 +34,38 @@ $stmt->execute();
 $landen = $stmt->fetchAll(PDO::FETCH_OBJ);
 ?>
 <html>
-<body>
-    <form method="post">
-        voornaam: <input type="text" name="voornaam"><br>
-        achernaam: <input type="text" name="achternaam"><br>
-        Admin? <input type="checkbox" name="isadmin"><br>
-        Gebruikersnaam: <input type="text" name="gebruikersnaam"><br>
-        wachtwoord: <input type="text" name="wachtwoord"><br>
-        land:
-        <select id="id_land" name="id_land">
-            <?php
-            foreach ($landen as $land) {
-                echo "<option  value='$land->id_land'>$land->naam</option>";
-            }
-            ?>
-        </select>
-        <input type="submit">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body style="padding: 0; margin: 0;">
+    <form method="post" style="padding-top: 100px; padding-left: 500px; padding-right: 500px;">
+        <div class="mb-3">
+            voornaam: <input type="text" name="voornaam" class="form-control"><br>
+        </div>
+        <div class="mb-3">
+            achernaam: <input type="text" name="achternaam" class="form-control"><br>
+        </div>
+        <div class="mb-3">
+            Admin? <input type="checkbox" name="isadmin" type="checkbox" class="form-check-input"><br>
+        </div>
+        <div class="mb-3">
+            Gebruikersnaam: <input type="text" name="gebruikersnaam" class="form-control"><br>
+        </div>
+        wachtwoord: <input type="text" name="wachtwoord" class="form-control"><br>
+        <div class="mb-3">
+            land:
+            <select id="id_land" name="id_land" class="form-select">
+                <?php
+                foreach ($landen as $land) {
+                    echo "<option  value='$land->id_land'>$land->naam</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <input class="btn btn-primary" type="submit">
     </form>
 </body>
+
 </html>
