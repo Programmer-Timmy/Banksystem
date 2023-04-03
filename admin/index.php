@@ -13,7 +13,6 @@ $stmt = $con->prepare("
             gebruiker.achternaam, 
             gebruiker.isadmin,
             gebruiker.gebruikersnaam,
-            gebruiker.wachtwoord,
             land.naam AS land 
         FROM 
             gebruiker
@@ -55,7 +54,6 @@ if (isset($_GET["id"])) {
                 <th>Achternaam</th>
                 <th>Admin?</th>
                 <th>gebruikersnaam</th>
-                <th>wachtwoord</th>
                 <th>Land</th>
                 <th>wijzigen</th>
                 <th>Verwijder</th>
@@ -75,7 +73,6 @@ if (isset($_GET["id"])) {
                     echo "<td>False</td>";
                 };
                 echo "<td>$gebruiker->gebruikersnaam</td>";
-                echo "<td>$gebruiker->wachtwoord</td>";
                 echo "<td>$gebruiker->land</td>";
                 echo "<td><a href='wijzig_gebruiker.php?id=$gebruiker->id_gebruiker' class='btn btn-primary'>...</a></td>";
                 echo "<td><a href='../admin?id=$gebruiker->id_gebruiker' onclick='return confirm(\"weet je het zeker?\")'; class='btn btn-danger'>X</a></td>";
