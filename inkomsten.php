@@ -25,8 +25,8 @@ FROM inkomen
 JOIN inkomen_soort ON inkomen.id_inkomen_soort = inkomen_soort.id_inkomen_soort;
 WHERE id_gebruiker = ?;"
 );
-$stmt->execute();
 $stmt->bindvalue(1, $_SESSION['id']);
+$stmt->execute();
 $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 
@@ -61,22 +61,24 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
             <a href="uitgaven.php">Uitgaven</a>
             <a href="schulden.php">Schulden</a>
             <a href="activa.php">Activa</a>
-            <a href="loguit.php">uitlogen</a>
+            <a href="logout.php">uitlogen</a>
 
         </div>
     </div>
 
-    <br><br>
+    <br>
 
-    <a href="transactie.php" class="button">Transactie toevoegen</a>
+    <div>
+        <h1>Inkomsten <a href="transactie.php" class="btn btn-primary">+</a></h1>
 
-    <h1>Inkomsten</h1>
+    </div>
     <table class='table table-striped'>
         <thead class='table-dark>'>
             <th>Bedrag</th>
             <th>Datum</th>
             <th>Soort</th>
             <th>Periodiek</th>
+            <th></th>
         </thead>
         <tbody>
             <?php
