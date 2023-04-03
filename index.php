@@ -41,7 +41,6 @@ if ($_POST) {
           <form method="post">
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Login</p>
-
             </div>
 
             <div class="divider d-flex align-items-center my-4">
@@ -50,16 +49,19 @@ if ($_POST) {
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="text" class="form-control form-control-lg" name="gebruikersnaam" placeholder="Gebruikersnaam"><br>
+              <label class="form-label" for="form3Example3">Gebruikersnaam:
+              </label>
+              <input type="text" class="form-control form-control-lg" name="gebruikersnaam"><br>
 
-              <label class="form-label" for="form3Example3">Gebruikersnaam</label>
+
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-3">
-              <input type="password" class="form-control form-control-lg" name="wachtwoord" placeholder="Wachtwoord"><br>
+              <label class="form-label" for="form3Example4">Wachtwoord:</label>
+              <input type="password" class="form-control form-control-lg" name="wachtwoord"><br>
 
-              <label class="form-label" for="form3Example4">Wachtwoord</label>
+
             </div>
 
             <div class="d-flex justify-content-between align-items-center">
@@ -74,12 +76,9 @@ if ($_POST) {
             </div>
 
             <div class="text-center text-lg-start mt-4 pt-2">
-
-              <input type="submit" value="Inloggen" class="btn btn-primary btn-lg">
               <a href="registreren.php" class="btn btn-primary btn-lg" role="button">Registreren</a>
-
+              <input type="submit" value="Inloggen" class="btn btn-primary btn-lg">
             </div>
-
           </form>
         </div>
       </div>
@@ -92,33 +91,7 @@ if ($_POST) {
         Copyright © 2023. All rights reserved.
       </div>
 
-
-
-      <div>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="#!" class="text-white">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-
     </div>
   </section>
-
-
-
-
-
-
-
-
 </body>
-
 </html>
