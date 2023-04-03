@@ -4,16 +4,26 @@ require 'database.php';
 if (!isset($_SESSION['id'])) {
     header("location: index.php");
 }
+
+if (isset($_GET["id"])) {
+    $stmt = $con->prepare("DELETE FROM schuld WHERE id_schuld = ?");
+    $stmt->bindValue(1, $_GET["id"]);
+
+    $stmt->execute();
+    header("location: schulden.php");
+}
+
 $stmt = $con->prepare("SELECT * FROM gebruiker WHERE id_gebruiker = ?");
 $stmt->bindValue(1, $_SESSION['id']);
 $stmt->execute();
 $gebruiker = $stmt->fetchObject();
 
 $stmt = $con->prepare(
-"SELECT schuld.id_schuld, schuld.waarde, datum_schuld, schuld.waarborg, schuld.id_gebruiker, schuld_soort.soort
+    "SELECT schuld.id_schuld, schuld.waarde, datum_schuld, schuld.waarborg, schuld.id_gebruiker, schuld_soort.soort
 FROM schuld
 JOIN schuld_soort ON schuld.id_schuld_soort = schuld_soort.id_schuld_soort
-WHERE id_gebruiker = ?");
+WHERE id_gebruiker = ?"
+);
 $stmt->bindValue(1, $_SESSION['id']);
 $stmt->execute();
 
@@ -30,23 +40,24 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
 
 </head>
 
 <body>
     <div class="header">
-        <a href="#default" class="logo">    <?php
-    echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
+        <a href="#default" class="logo"> <?php
+                                            echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
 
-    ?></a>
+                                            ?></a>
         <div class="header-right">
             <a href="portal.php">Home</a>
             <a href="inkomsten.php">Inkomsten</a>
             <a href="uitgaven.php">Uitgaven</a>
             <a class="active" href="schulden.php">Schulden</a>
             <a href="activa.php">Activa</a>
+            <a href="loguit.php">uitlogen</a>
 
 
         </div>
@@ -79,7 +90,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
                     echo "<td>Nee</td>";
                 }
 
-                echo "<td><a class='btn btn-danger' href='inkomsten.php?id=$test->id_schuld' onclick='return confirm(\"Weet je het zeker?\");'>X</a></td>";
+                echo "<td><a class='btn btn-danger' href='schulden.php?id=$test->id_schuld' onclick='return confirm(\"Weet je het zeker?\");'>X</a></td>";
 
                 echo "</tr>";
             }
