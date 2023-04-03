@@ -3,7 +3,9 @@ date_default_timezone_set("Europe/Amsterdam");
 session_start();
 require 'database.php';
 
-
+if (!isset($_SESSION['id'])) {
+  header("location: index.php");
+}
 //JSON CodE
 if ($_POST) {
   $stmt = $con->prepare("INSERT INTO schuld(waarde, datum_schuld, waarborg, id_schuld_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
