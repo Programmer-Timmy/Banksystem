@@ -11,6 +11,42 @@ $stmt->bindValue(1, $_SESSION['id']);
 $stmt->execute();
 $gebruiker = $stmt->fetchObject();
 
+
+
+
+//saldo berekenen
+//inkomsten ophalen
+$stmt = $con->prepare("SELECT bedrag,idinkomen FROM inkomen WHERE id_gebruiker = ?");
+$stmt->bindValue(1, $_SESSION['id']);
+$stmt->execute();   
+$inkomen = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+$inkomstentotaal = 0;
+
+// inkomsten optellen
+foreach($inkomen as $inkomst) {
+    $inkomstentotaal = $inkomst->bedrag + $inkomstentotaal; 
+}
+
+
+
+//Uitgaven ophalen
+$stmt = $con->prepare("SELECT bedrag,id_uitgaven FROM uitgaven WHERE id_gebruiker = ?");
+$stmt->bindValue(1, $_SESSION['id']);
+$stmt->execute();   
+$uitgaven = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+$uitgaventotaal = 0;
+
+// Uitgaven optellen
+foreach($uitgaven as $uitgave) {
+    $uitgaventotaal = $uitgave->bedrag + $uitgaventotaal; 
+}
+
+
+$saldo = $inkomstentotaal - $uitgaventotaal 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +59,6 @@ $gebruiker = $stmt->fetchObject();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
-
 
 </head>
 
@@ -45,12 +79,13 @@ $gebruiker = $stmt->fetchObject();
     </div>
 
     <br><br>
-    <button class="button-36" onclick="window.location.href='transactie.php'">Transactie toevoegen</button>
-    <button class="button-36" onclick="window.location.href='addschuld.php'">Schuld toevoegen</button>
-    <button class="button-36" onclick="window.location.href='addactiva.php'">Activa toevoegen</button>
 
+    <!-- saldo  -->
+    <H1 style="text-align: center;">SALDO</H1></p>
+    
+    <h2 style="text-align: center;">$<?php echo $saldo; ?></h2>
 
-
+    
 
 
 
