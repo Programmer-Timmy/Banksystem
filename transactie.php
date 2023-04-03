@@ -1,31 +1,32 @@
 <?php
 date_default_timezone_set("Europe/Amsterdam");
+session_start();
 require 'database.php';
 
 
 //JSON CodE
 if ($_POST) {
   if($_POST['plus_min'] == 1){
-  $stmt = $conn->prepare("INSERT INTO inkomen(bedrag, datum, periodiek, id_inkomen_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
+  $stmt = $con->prepare("INSERT INTO inkomen(bedrag, datum, periodiek, id_inkomen_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
   }
   else {
-    $stmt = $conn->prepare("INSERT INTO uitgaven(bedrag, datum, vaste_uitgaven, id_uitgaven_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $con->prepare("INSERT INTO uitgaven(bedrag, datum, vaste_uitgaven, id_uitgaven_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
 
   }
 
   $stmt->bindValue(1, $_POST['bedrag']);
-  $stmt->bindValue(2, date("d-m-Y H:i:s"));
-  if($_POST['periodiek'] == 1){
+  $stmt->bindValue(2, date("Y-m-d"));
+  if(isset($_POST['periodiek'])){
   $stmt->bindValue(3, 1);
   }
   else {
     $stmt->bindValue(3, 0);
   }
   $stmt->bindValue(4, $_POST['soort']);
-  $stmt->bindValue(5, 1);
+  $stmt->bindValue(5, $_SESSION['id']);
   $stmt->execute();
 
-  header("location: index.php");
+  header("location: portal.php");
 }
 
 
