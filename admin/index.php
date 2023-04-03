@@ -1,5 +1,5 @@
 <?php
-            session_start();
+session_start();
 
 require_once "../database.php";
 
@@ -37,10 +37,15 @@ if (isset($_GET["id"])) {
 ?>
 <html>
 
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+</head>
+
 <body>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <a class="btn btn-primary m-3" href="gebruiker_toevoegen.php">toevoegen</a>
+
+    <a class="btn btn-primary m-3" href="gebruiker_toevoegen.php">Toevoegen</a>
+    <a class="btn btn-primary m-3" href="/logout.php">Uitlogen</a>
 
     <table class="table table-striped" style="text-align: center;">
         <thead class="thead-dark">
