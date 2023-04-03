@@ -2,7 +2,9 @@
 session_start();
 date_default_timezone_set("Europe/Amsterdam");
 require 'database.php';
-
+if (!isset($_SESSION['id'])) {
+  header("location: index.php");
+}
 
 //JSON CodE
 if ($_POST) {
@@ -10,7 +12,7 @@ if ($_POST) {
 
   $stmt->bindValue(1, $_POST['waarde']);
   $stmt->bindValue(2, date("y-m-d H:i:s"));
-  if(isset($_POST['waarborg'])){
+  if(isset($_POST['materieel'])){
   $stmt->bindValue(3, 1);
   }
   else {
