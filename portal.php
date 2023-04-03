@@ -22,15 +22,15 @@ $gebruiker = $stmt->fetchObject();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 
 </head>
 
 <body>
     <div class="header">
         <a href="#default" class="logo"> <?php
-        echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
-        ?>
+                                            echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
+                                            ?>
         </a>
         <div class="header-right">
             <a class="active" href="portal.php">Home</a>
@@ -38,6 +38,7 @@ $gebruiker = $stmt->fetchObject();
             <a href="uitgaven.php">Uitgaven</a>
             <a href="schulden.php">Schulden</a>
             <a href="activa.php">Activa</a>
+            <a href="logout.php">Uitlogen</a>
         </div>
     </div>
 
