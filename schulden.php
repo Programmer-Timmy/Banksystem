@@ -63,41 +63,38 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
         </div>
     </div>
 
-    <br><br>
+    <border style="padding: 100px">
+        <h1>Schuld <a href="addschuld.php" class="btn btn-primary">+</a></h1>
+        <table class='table table-striped'>
+            <thead class='table-dark>'>
+                <th>Bedrag</th>
+                <th>Datum</th>
+                <th>Soort</th>
+                <th>Waarborg</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($tests as $test) {
+                    echo "<tr>";
+                    echo "<td>€$test->waarde</td>";
+                    echo "<td>$test->datum_schuld</td>";
+                    echo "<td>$test->soort</td>";
 
-    <a href="addschuld.php" class="button">Transactie toevoegen</a>
+                    if ($test->waarborg == 1) {
+                        echo "<td>Ja</td>";
+                    } else {
+                        echo "<td>Nee</td>";
+                    }
 
+                    echo "<td><a class='btn btn-danger' href='schulden.php?id=$test->id_schuld' onclick='return confirm(\"Weet je het zeker?\");'>X</a></td>";
 
-    <h1>Schuld</h1>
-    <table class='table table-striped'>
-        <thead class='table-dark>'>
-            <th>Bedrag</th>
-            <th>Datum</th>
-            <th>Soort</th>
-            <th>Waarborg</th>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($tests as $test) {
-                echo "<tr>";
-                echo "<td>€$test->waarde</td>";
-                echo "<td>$test->datum_schuld</td>";
-                echo "<td>$test->soort</td>";
-
-                if ($test->waarborg == 1) {
-                    echo "<td>Ja</td>";
-                } else {
-                    echo "<td>Nee</td>";
+                    echo "</tr>";
                 }
-
-                echo "<td><a class='btn btn-danger' href='schulden.php?id=$test->id_schuld' onclick='return confirm(\"Weet je het zeker?\");'>X</a></td>";
-
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-
+                ?>
+            </tbody>
+        </table>
+    </border>
 
 </body>
 
