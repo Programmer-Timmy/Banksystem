@@ -1,5 +1,6 @@
 <?php
 require_once "database.php";
+session_start();
 if ($_POST) {
 	$stmt = $con->prepare("SELECT * FROM gebruiker WHERE gebruikersnaam=?");
 	$stmt->bindValue(1, $_POST["gebruikersnaam"]);
@@ -9,8 +10,8 @@ if ($_POST) {
 
 	if ($user !== false) {
 		if (password_verify($_POST["wachtwoord"], $user->wachtwoord)) {
-			session_start();
-			$_SESSION["id"] = $user->id;
+			
+			$_SESSION["id"] = $user->id_gebruiker;
 			if ($user->isadmin == 1) {
 				$_SESSION["admin"] = 'true';
 				header("location:/admin");
@@ -33,11 +34,6 @@ if ($_POST) {
 </head>
 
 <body>
-	
-		
-		
-		
-	
 	<section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
