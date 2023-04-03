@@ -62,18 +62,19 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
         </div>
     </div>
 
-    <br><br>
-
-    <a href="transactie.php" class="button">Transactie toevoegen</a>
+    <br>
 
 
-    <h1>Uitgaven</h1>
+
+
+    <h1>Uitgaven <a href="transactie.php" class="btn btn-primary">+</a></h1>
     <table class='table table-striped'>
         <thead class='table-dark>'>
             <th>Bedrag</th>
             <th>Datum</th>
             <th>Soort</th>
             <th>Periodiek</th>
+            <th></th>
         </thead>
         <tbody>
             <?php
