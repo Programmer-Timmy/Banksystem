@@ -1,0 +1,5 @@
+{"value":null,"state":"option1","type":null,"date":"03-04-2023 06:20:53"}
+{"value":null,"state":"option1","type":null,"date":"03-04-2023 06:21:27"}
+{"value":null,"state":"option1","type":null,"date":"03-04-2023 06:21:58"}
+{"value":"12.16","state":"option1","type":null,"date":"03-04-2023 06:23:02"}
+{"value":"666","state":"1","type":"1","date":"03-04-2023 06:24:53"}
