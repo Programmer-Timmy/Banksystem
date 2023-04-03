@@ -18,8 +18,6 @@ if ($_POST) {
   $stmt->execute();
 
   $user = $stmt->fetchObject();
-
-  
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +29,7 @@ if ($_POST) {
 </head>
 
 <body>
-    <form method="post" style="padding-top: 100px; padding-left: 500px; padding-right: 500px;">
+  <form method="post" style="padding-top: 100px; padding-left: 500px; padding-right: 500px;">
     <div class="mb-3">
       voornaam: <input type="text" name="voornaam" class="form-control"><br>
     </div>
@@ -55,6 +53,15 @@ if ($_POST) {
     <input class="btn btn-primary" type="submit">
   </form>
 
+  <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary" style="position: fixed;
+    bottom: 0;
+    width: 100%;">
+    <!-- Copyright -->
+    <div class="text-white mb-3 mb-md-0">
+      Copyright © 2023. All rights reserved.
+    </div>
+
+  </div>
 </body>
 
 </html>
