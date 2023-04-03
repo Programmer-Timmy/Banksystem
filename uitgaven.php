@@ -1,19 +1,20 @@
 <?php
+session_start();
 require 'database.php';
-
-if(isset($_GET["id"])) {
-    $stmt = $conn->prepare("DELETE FROM uitgaven WHERE iduitgaven = ?");
-    $stmt->bindValue(1, $_GET["id"]);
-    
-    $stmt->execute();
-    header("location: uitgaven.php");
+if (!isset($_SESSION['id'])) {
+    header("location: index.php");
 }
+$stmt = $con->prepare("SELECT * FROM gebruiker WHERE id_gebruiker = ?");
+$stmt->bindValue(1, $_SESSION['id']);
+$stmt->execute();
+$gebruiker = $stmt->fetchObject();
 
-$stmt = $conn->prepare(
+$stmt = $con->prepare(
 "SELECT uitgaven.id_uitgaven, uitgaven.bedrag, uitgaven.datum, uitgaven.vaste_uitgaven, uitgaven.id_gebruiker, uitgaven_soort.soort
 FROM uitgaven
 JOIN uitgaven_soort ON uitgaven.id_uitgaven_soort = uitgaven_soort.id_uitgaven_soort
-WHERE id_gebruiker = 1;;");
+WHERE id_gebruiker = ?");
+$stmt->bindValue(1, $_SESSION['id']);
 $stmt->execute();
 
 $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -42,7 +43,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
 
     ?></a>
         <div class="header-right">
-            <a href="index.php">Home</a>
+            <a href="portal.php">Home</a>
             <a href="inkomsten.php">Inkomsten</a>
             <a class="active" href="uitgaven.php">Uitgaven</a>
             <a href="schulden.php">Schulden</a>
