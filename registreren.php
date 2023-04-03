@@ -60,7 +60,6 @@ if ($_POST) {
     <div class="text-white mb-3 mb-md-0">
       Copyright © 2023. All rights reserved.
     </div>
-    dd
 
   </div>
 </body>
