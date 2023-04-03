@@ -33,12 +33,12 @@ if ($_POST) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="padding-top: 100px">
   <section class="vh-100">
     <div class="container-fluid h-custom">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-md-9 col-lg-6 col-xl-5">
-          <img id="test" src="bankfoto.jfif" class="foto1" alt="Sample image">
+          <img id="test" src="img/bankfoto.jfif" class="foto1" alt="Sample image">
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
           <form method="post">
@@ -78,7 +78,7 @@ if ($_POST) {
 
             <div class="text-center text-lg-start mt-4 pt-2">
 
-              <input type="submit" value="Inloggen" class="btn btn-primary btn-lg"><br>
+              <input type="submit" value="Inloggen" class="btn btn-primary btn-lg">
               <a href="registreren.php" class="btn btn-primary btn-lg" role="button">Registreren</a>
 
             </div>
@@ -87,7 +87,9 @@ if ($_POST) {
         </div>
       </div>
     </div>
-    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+    <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary" style="position: fixed;
+    bottom: 0;
+    width: 100%;">
       <!-- Copyright -->
       <div class="text-white mb-3 mb-md-0">
         Copyright © 2023. All rights reserved.
