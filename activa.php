@@ -39,8 +39,9 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+
 
 
 </head>
@@ -62,18 +63,19 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
         </div>
     </div>
 
-    <br><br>
-
-    <a href="addactiva.php" class="button">Transactie toevoegen</a>
+    <br>
 
 
-    <h1>activa</h1>
+
+
+    <h1>Activa <a href="addactiva.php" class="btn btn-primary">+</a></h1>
     <table class='table table-striped'>
         <thead class='table-dark>'>
             <th>Waarde</th>
             <th>Datum</th>
             <th>Soort</th>
             <th>Materieel</th>
+            <th></th>
         </thead>
         <tbody>
             <?php
