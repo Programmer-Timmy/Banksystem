@@ -1,10 +1,15 @@
 <?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header("location:/");
+}
 
+require_once 'database.php';
 
-$gebruiker = new stdClass();
-$gebruiker->id_gebruiker = 1;
-$gebruiker->voornaam = "Jesse";
-$gebruiker->achternaam = "van Doorn";
+$stmt = $con->prepare("SELECT * FROM gebruiker WHERE id_gebruiker = ?");
+$stmt->bindValue(1, $_SESSION['id']);
+$stmt->execute();
+$gebruiker = $stmt->fetchObject();
 
 ?>
 
@@ -24,17 +29,15 @@ $gebruiker->achternaam = "van Doorn";
 <body>
     <div class="header">
         <a href="#default" class="logo"> <?php
-                                            echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
-
-                                            ?></a>
+        echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
+        ?>
+        </a>
         <div class="header-right">
-            <a class="active" href="index.php">Home</a>
+            <a class="active" href="portal.php">Home</a>
             <a href="inkomsten.php">Inkomsten</a>
             <a href="uitgaven.php">Uitgaven</a>
             <a href="schulden.php">Schulden</a>
             <a href="activa.php">Activa</a>
-
-
         </div>
     </div>
 
