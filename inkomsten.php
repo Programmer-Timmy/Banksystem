@@ -3,7 +3,15 @@ session_start();
 require 'database.php';
 
 if (!isset($_SESSION['id'])) {
-    header("location: index.php"); 
+    header("location: index.php");
+}
+
+if (isset($_GET["id"])) {
+    $stmt = $con->prepare("DELETE FROM inkomen WHERE idinkomen = ?");
+    $stmt->bindValue(1, $_GET["id"]);
+
+    $stmt->execute();
+    header("location: inkomsten.php");
 }
 
 $stmt = $con->prepare("SELECT * FROM gebruiker WHERE id_gebruiker = ?");
@@ -11,7 +19,8 @@ $stmt->bindValue(1, $_SESSION['id']);
 $stmt->execute();
 $gebruiker = $stmt->fetchObject();
 
-$stmt = $con->prepare("SELECT inkomen.idinkomen, inkomen.bedrag, inkomen.datum, inkomen.periodiek, inkomen.id_gebruiker, inkomen_soort.soort
+$stmt = $con->prepare(
+    "SELECT inkomen.idinkomen, inkomen.bedrag, inkomen.datum, inkomen.periodiek, inkomen.id_gebruiker, inkomen_soort.soort
 FROM inkomen
 JOIN inkomen_soort ON inkomen.id_inkomen_soort = inkomen_soort.id_inkomen_soort;
 WHERE id_gebruiker = ?;"
@@ -32,7 +41,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
 
 
@@ -43,7 +52,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
         <a href="#default" class="logo">
             <?php
             echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
-            
+
             ?>
         </a>
         <div class="header-right">
@@ -52,7 +61,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
             <a href="uitgaven.php">Uitgaven</a>
             <a href="schulden.php">Schulden</a>
             <a href="activa.php">Activa</a>
-
+            <a href="loguit.php">uitlogen</a>
 
         </div>
     </div>
