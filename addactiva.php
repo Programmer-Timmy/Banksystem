@@ -1,25 +1,26 @@
 <?php
+session_start();
 date_default_timezone_set("Europe/Amsterdam");
 require 'database.php';
 
 
 //JSON CodE
 if ($_POST) {
-  $stmt = $conn->prepare("INSERT INTO activa(waarde, datum_aankoop, materieel, id_activa_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
+  $stmt = $con->prepare("INSERT INTO activa(waarde, datum_aankoop, materieel, id_activa_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
 
   $stmt->bindValue(1, $_POST['waarde']);
-  $stmt->bindValue(2, date("d-m-Y H:i:s"));
-  if($_POST['waarborg'] == 1){
+  $stmt->bindValue(2, date("y-m-d H:i:s"));
+  if(isset($_POST['waarborg'])){
   $stmt->bindValue(3, 1);
   }
   else {
     $stmt->bindValue(3, 0);
   }
   $stmt->bindValue(4, $_POST['soort']);
-  $stmt->bindValue(5, 1);
+  $stmt->bindValue(5, $_SESSION['id']);
   $stmt->execute();
 
-  header("location: index.php");
+  header("location: portal.php");
 }
 
 
