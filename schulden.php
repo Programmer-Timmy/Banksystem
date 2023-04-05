@@ -78,7 +78,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
                 foreach ($tests as $test) {
                     $newDate = date("d-m-Y", strtotime($test->datum_schuld));  
                 echo "<tr>";
-                echo "<td>€$test->waarde</td>";
+                echo "<td>€" . str_replace('.', ',', $test->waarde) . "</td>";
                 echo "<td>$newDate</td>";
                 echo "<td>$test->soort</td>";
 
