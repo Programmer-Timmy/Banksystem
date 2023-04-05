@@ -76,10 +76,11 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
             <tbody>
                 <?php
                 foreach ($tests as $test) {
-                    echo "<tr>";
-                    echo "<td>€$test->waarde</td>";
-                    echo "<td>$test->datum_schuld</td>";
-                    echo "<td>$test->soort</td>";
+                    $newDate = date("d-m-Y", strtotime($test->datum_schuld));  
+                echo "<tr>";
+                echo "<td>€$test->waarde</td>";
+                echo "<td>$newDate</td>";
+                echo "<td>$test->soort</td>";
 
                     if ($test->waarborg == 1) {
                         echo "<td>Ja</td>";

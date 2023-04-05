@@ -37,6 +37,16 @@ $landen = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script>
+        function myFunction() {
+            var x = document.getElementById("LaatZien");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </head>
 
 <body style="padding: 0; margin: 0;">
@@ -53,7 +63,8 @@ $landen = $stmt->fetchAll(PDO::FETCH_OBJ);
         <div class="mb-3">
             Gebruikersnaam: <input type="text" name="gebruikersnaam" class="form-control"><br>
         </div>
-        wachtwoord: <input type="text" name="wachtwoord" class="form-control"><br>
+        wachtwoord: <input type="password" name="wachtwoord" class="form-control" id="LaatZien"><br>
+        <input type="checkbox" onclick="myFunction()">Laat wachtwoord zien
         <div class="mb-3">
             land:
             <select id="id_land" name="id_land" class="form-select">

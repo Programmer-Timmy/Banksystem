@@ -79,9 +79,10 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
         <tbody>
             <?php
             foreach ($tests as $test) {
+                $newDate = date("d-m-Y", strtotime($test->datum));  
                 echo "<tr>";
                 echo "<td>€$test->bedrag</td>";
-                echo "<td>$test->datum</td>";
+                echo "<td>$newDate</td>";
                 echo "<td>$test->soort</td>";
 
                 if ($test->vaste_uitgaven == 1) {

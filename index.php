@@ -76,17 +76,7 @@ if ($_POST) {
 
             </div>
 
-            <div class="d-flex justify-content-between align-items-center">
-              <!-- Checkbox -->
-              <div class="form-check mb-0">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                <label class="form-check-label" for="form2Example3">
-                  Gegevens Opslaan
-                </label>
-              </div>
-              <a href="#!" class="text-body">wachtwoord vergeten?</a>
-            </div>
-
+            
             <div class="text-center text-lg-start mt-4 pt-2">
               <a href="registreren.php" class="btn btn-primary btn-lg" role="button">Registreren</a>
               <input type="submit" value="Inloggen" class="btn btn-primary btn-lg">

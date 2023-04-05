@@ -13,11 +13,13 @@ if ($_POST) {
   $stmt->bindValue(2, $_POST["achternaam"]);
   $stmt->bindValue(3, $_POST["gebruikersnaam"]);
   $stmt->bindValue(4, $pass);
-  $stmt->bindValue(5, $_POST["land_id"]);
+  $stmt->bindValue(5, $_POST["id_land"]);
 
   $stmt->execute();
 
   $user = $stmt->fetchObject();
+
+  header("location: index.php");
 }
 ?>
 <!DOCTYPE html>

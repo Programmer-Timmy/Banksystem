@@ -22,6 +22,23 @@ $stmt->execute();
 $gebruikers = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 if (isset($_GET["id"])) {
+    //inkomsten activa schulden en uitgaven verwijderen
+    $stmt = $con->prepare("DELETE FROM inkomen WHERE id_gebruiker = ?");
+    $stmt->bindValue(1, $_GET["id"]);
+
+    $stmt->execute();
+    $stmt = $con->prepare("DELETE FROM activa WHERE id_gebruiker = ?");
+    $stmt->bindValue(1, $_GET["id"]);
+
+    $stmt->execute();
+    $stmt = $con->prepare("DELETE FROM uitgaven WHERE id_gebruiker = ?");
+    $stmt->bindValue(1, $_GET["id"]);
+
+    $stmt->execute();
+    $stmt = $con->prepare("DELETE FROM schuld WHERE id_gebruiker = ?");
+    $stmt->bindValue(1, $_GET["id"]);
+
+    $stmt->execute();
     $stmt = $con->prepare("DELETE FROM gebruiker WHERE id_gebruiker = ?");
     $stmt->bindValue(1, $_GET["id"]);
 
@@ -38,18 +55,27 @@ if (isset($_GET["id"])) {
 
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script>
+        function myFunction() {
+            var x = document.getElementById("LaatZien");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </head>
 
 <body>
 
 
     <a class="btn btn-primary m-3" href="gebruiker_toevoegen.php">Toevoegen</a>
-    <a class="btn btn-primary m-3" href="/logout.php">Uitlogen</a>
+    <a class="btn btn-primary m-3" href="/logout.php">Uitloggen</a>
 
     <table class="table table-striped" style="text-align: center;">
         <thead class="thead-dark">
             <tr>
-                <th>Gebruikers Id</th>
                 <th>Voornaam</th>
                 <th>Achternaam</th>
                 <th>Admin?</th>
@@ -64,7 +90,6 @@ if (isset($_GET["id"])) {
 
             foreach ($gebruikers as $gebruiker) {
                 echo "<tr>";
-                echo "<td>$gebruiker->id_gebruiker</td>";
                 echo "<td>$gebruiker->voornaam</td>";
                 echo "<td>$gebruiker->achternaam</td>";
                 if ($gebruiker->isadmin == 1) {
@@ -81,5 +106,7 @@ if (isset($_GET["id"])) {
 
             ?>
         </tbody>
+
+</body>
 
 </html>
