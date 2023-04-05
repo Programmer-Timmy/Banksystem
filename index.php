@@ -29,6 +29,17 @@ if ($_POST) {
 <html>
 
 <head>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("LaatZien");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -59,7 +70,8 @@ if ($_POST) {
             <!-- Password input -->
             <div class="form-outline mb-3">
               <label class="form-label" for="form3Example4">Wachtwoord:</label>
-              <input type="password" class="form-control form-control-lg" name="wachtwoord"><br>
+              <input type="password" class="form-control form-control-lg" name="wachtwoord" id="LaatZien"><br>
+              <input type="checkbox" onclick="myFunction()">Laat wachtwoord zien
 
 
             </div>
@@ -94,4 +106,5 @@ if ($_POST) {
     </div>
   </section>
 </body>
+
 </html>

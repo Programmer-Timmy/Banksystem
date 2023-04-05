@@ -67,6 +67,7 @@ $saldo = $inkomstentotaal - $uitgaventotaal
     <div class="header">
         <a href="#default" class="logo"> <?php
                                             echo ("Hallo $gebruiker->voornaam $gebruiker->achternaam");
+                                            
                                             ?>
         </a>
         <div class="header-right">
@@ -75,7 +76,7 @@ $saldo = $inkomstentotaal - $uitgaventotaal
             <a href="uitgaven.php">Uitgaven</a>
             <a href="schulden.php">Schulden</a>
             <a href="activa.php">Activa</a>
-            <a href="logout.php">Uitlogen</a>
+            <a href="logout.php">Uitloggen</a>
         </div>
     </div>
 

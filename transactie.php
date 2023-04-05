@@ -60,7 +60,7 @@ if ($_POST) {
                   <form method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Prijs in Euro's</label>
-                            <input type="text" class="form-control" id="waarde" name="bedrag" aria-describedby="emailHelp">
+                            <input type="number" class="form-control" id="waarde" name="bedrag" aria-describedby="emailHelp" step=".01">
                         </div>
 
                         <strong>Inkomsten en uitgaven</strong>

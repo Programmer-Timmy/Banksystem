@@ -24,6 +24,17 @@ if ($_POST) {
 <html lang="nl">
 
 <head>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("LaatZien");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
   <link rel="stylesheet" href="style/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -31,17 +42,20 @@ if ($_POST) {
 <body>
   <form method="post" style="padding-top: 100px; padding-left: 500px; padding-right: 500px;">
     <div class="mb-3">
-      voornaam: <input type="text" name="voornaam" class="form-control"><br>
+      Voornaam: <input type="text" name="voornaam" class="form-control"><br>
     </div>
     <div class="mb-3">
-      achernaam: <input type="text" name="achternaam" class="form-control"><br>
+      Achternaam: <input type="text" name="achternaam" class="form-control"><br>
     </div>
     <div class="mb-3">
       Gebruikersnaam: <input type="text" name="gebruikersnaam" class="form-control"><br>
     </div>
-    wachtwoord: <input type="text" name="wachtwoord" class="form-control"><br>
     <div class="mb-3">
-      land:
+      Wachtwoord: <input type="password" name="wachtwoord" class="form-control" id="LaatZien"><br>
+      <input type="checkbox" onclick="myFunction()">Laat wachtwoord zien
+    </div>
+    <div class="mb-3">
+      Land:
       <select id="id_land" name="id_land" class="form-select">
         <?php
         foreach ($landen as $land) {

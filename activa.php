@@ -58,7 +58,7 @@ $tests = $stmt->fetchAll(PDO::FETCH_OBJ);
             <a href="uitgaven.php">Uitgaven</a>
             <a href="schulden.php">Schulden</a>
             <a class="active" href="activa.php">Activa</a>
-            <a href="logout.php">uitlogen</a>
+            <a href="logout.php">Uitloggen</a>
 
         </div>
     </div>
