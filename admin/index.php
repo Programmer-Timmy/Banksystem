@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once "../database.php";
 
 if (!isset($_SESSION['admin'])) {
@@ -11,7 +13,6 @@ $stmt = $con->prepare("
             gebruiker.achternaam, 
             gebruiker.isadmin,
             gebruiker.gebruikersnaam,
-            gebruiker.wachtwoord,
             land.naam AS land 
         FROM 
             gebruiker
@@ -35,10 +36,15 @@ if (isset($_GET["id"])) {
 ?>
 <html>
 
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+</head>
+
 <body>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <a class="btn btn-primary m-3" href="gebruiker_toevoegen.php">toevoegen</a>
+
+    <a class="btn btn-primary m-3" href="gebruiker_toevoegen.php">Toevoegen</a>
+    <a class="btn btn-primary m-3" href="/logout.php">Uitlogen</a>
 
     <table class="table table-striped" style="text-align: center;">
         <thead class="thead-dark">
@@ -48,7 +54,6 @@ if (isset($_GET["id"])) {
                 <th>Achternaam</th>
                 <th>Admin?</th>
                 <th>gebruikersnaam</th>
-                <th>wachtwoord</th>
                 <th>Land</th>
                 <th>wijzigen</th>
                 <th>Verwijder</th>
@@ -68,7 +73,6 @@ if (isset($_GET["id"])) {
                     echo "<td>False</td>";
                 };
                 echo "<td>$gebruiker->gebruikersnaam</td>";
-                echo "<td>$gebruiker->wachtwoord</td>";
                 echo "<td>$gebruiker->land</td>";
                 echo "<td><a href='wijzig_gebruiker.php?id=$gebruiker->id_gebruiker' class='btn btn-primary'>...</a></td>";
                 echo "<td><a href='../admin?id=$gebruiker->id_gebruiker' onclick='return confirm(\"weet je het zeker?\")'; class='btn btn-danger'>X</a></td>";

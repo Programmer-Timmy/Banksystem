@@ -1,8 +1,9 @@
 <?php
+session_start();
 
 require_once "../database.php";
 
-if (!isset($_SESSION['admin'])){
+if (!isset($_SESSION['admin'])) {
     header('location: ../');
 }
 
@@ -43,31 +44,45 @@ if ($_POST) {
 
 <html>
 
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
 <body>
-    <form method="post">
-        voornaam: <input type="text" name="voornaam" value="<?php echo $gebruiker->voornaam ?>"><br>
-        achernaam: <input type="text" name="achternaam" value="<?php echo $gebruiker->achternaam ?>"><br>
-        Admin? <input type="checkbox" name="isadmin" <?php
-        if ($gebruiker->isadmin == '1') {
-        echo "checked";
-        } ?>><br>
-        Gebruikersnaam: <input type="text" name="gebruikersnaam" value="<?php echo $gebruiker->gebruikersnaam ?>"><br>
-        wachtwoord: <input type="text" name="wachtwoord"><br>
-        land:
-        <select id="id_land" name="id_land">
-            <?php
-            // voeg optie toe om andere landen aanteclicken en dan een nieuw land toetevoegen aan de database
-            foreach ($landen as $land) {
-                if ($land->id_land == $gebruiker->id_land) {
-                    echo "<option selected value='$land->id_land'>$land->naam</option>";
-                } else {
-                    echo "<option value='$land->id_land'>$land->naam</option>";
+    <form method="post" style="padding-top: 100px; padding-left: 500px; padding-right: 500px;">
+        <div class="mb-3">
+            voornaam: <input type="text" name="voornaam" class="form-control" value="<?php echo $gebruiker->voornaam ?>"><br>
+        </div>
+        <div class="mb-3">
+            achernaam: <input type="text" name="achternaam" class="form-control" value="<?php echo $gebruiker->achternaam ?>"><br>
+        </div>
+        <div class="mb-3">
+            Admin? <input type="checkbox" name="isadmin" type="checkbox" class="form-check-input" <?php
+                                                                                                    if ($gebruiker->isadmin == '1') {
+                                                                                                        echo "checked";
+                                                                                                    } ?>><br>
+        </div>
+        <div class="mb-3">
+            Gebruikersnaam: <input type="text" name="gebruikersnaam" class="form-control" value="<?php echo $gebruiker->gebruikersnaam ?>"><br>
+        </div>
+        wachtwoord: <input type="text" name="wachtwoord" class="form-control"><br>
+        <div class="mb-3">
+            land:
+            <select id="id_land" name="id_land" class="form-select">
+                <?php
+                foreach ($landen as $land) {
+                    if ($land->id_land == $gebruiker->id_land) {
+                        echo "<option selected value='$land->id_land'>$land->naam</option>";
+                    } else {
+                        echo "<option value='$land->id_land'>$land->naam</option>";
+                    }
                 }
-            }
-            ?>
-        </select>
-        <input type="submit">
+                ?>
+            </select>
+        </div>
+        <input class="btn btn-primary" type="submit">
     </form>
+
 </body>
 
 </html>
