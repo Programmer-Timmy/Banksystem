@@ -58,13 +58,13 @@ if ($_POST) {
             <input type="number" class="form-control" id="waarde" name="waarde" aria-describedby="emailHelp" step=".01">
           </div>
 
-          <input type="checkbox" id="materieel" name="materieel" value="1">
-          <label for="waarborg">Het is materieel:</label><br>
-
           <div class="form-group">
             <label for="exampleInputEmail1">datum</label>
             <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp" step=".01">
           </div>
+
+          <input type="checkbox" id="materieel" name="materieel" value="1">
+          <label for="waarborg">Het is materieel:</label><br>
 
           <strong>Soort Activa</strong>
           <div class="form-check">
