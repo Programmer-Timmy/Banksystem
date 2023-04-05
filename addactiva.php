@@ -10,7 +10,7 @@ if (!isset($_SESSION['id'])) {
 if ($_POST) {
   $stmt = $con->prepare("INSERT INTO activa(waarde, datum_aankoop, materieel, id_activa_soort, id_gebruiker) VALUES (?, ?, ?, ?, ?)");
 
-  $stmt->bindValue(1, $_POST['waarde']);
+  $stmt->bindValue(1,  $_POST['waarde']);
   $stmt->bindValue(2, date("y-m-d H:i:s"));
   if(isset($_POST['materieel'])){
   $stmt->bindValue(3, 1);
@@ -54,7 +54,7 @@ if ($_POST) {
                   <form method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Waarde in Euro's</label>
-                            <input type="text" class="form-control" id="waarde" name="waarde" aria-describedby="emailHelp">
+                            <input type="number" class="form-control" id="waarde" name="waarde" aria-describedby="emailHelp" step=".01">
                         </div>
 
                         <input type="checkbox" id="materieel" name="materieel" value="1">

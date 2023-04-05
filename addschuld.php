@@ -54,7 +54,7 @@ if ($_POST) {
                   <form method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Waarde in Euro's</label>
-                            <input type="text" class="form-control" id="waarde" name="waarde" aria-describedby="emailHelp">
+                            <input type="number" class="form-control" id="waarde" name="waarde" aria-describedby="emailHelp" step=".01">
                         </div>
 
                         <input type="checkbox" id="waarborg" name="waarborg" value="1">
